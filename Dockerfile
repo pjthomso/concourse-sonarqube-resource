@@ -15,6 +15,11 @@ FROM openjdk:8u151-alpine
 RUN apk -f -q update \
 && apk -f -q add bash curl gawk git jq nodejs
 
+# Install typescript
+RUN npm install -g typescript
+
+ENV NODE_PATH "/usr/lib/node_modules/"
+
 # https://github.com/concourse/concourse/issues/2042
 RUN unlink  $JAVA_HOME/jre/lib/security/cacerts && \
 cp "/etc/ssl/certs/java/cacerts" "${JAVA_HOME}/jre/lib/security/cacerts"
